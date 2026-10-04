@@ -1,0 +1,23 @@
+---
+- name: Configure Nexvion environment
+  hosts: local
+  connection: local
+  become: false
+
+  tasks:
+    - name: Ensure Nexvion project directory exists
+      ansible.builtin.file:
+        path: /mnt/d/Projects/Nexvion
+        state: directory
+
+    - name: Verify Nexvion application files
+      ansible.builtin.stat:
+        path: "{{ item }}"
+      loop:
+        - /mnt/d/Projects/Nexvion/index.html
+        - /mnt/d/Projects/Nexvion/products.html
+        - /mnt/d/Projects/Nexvion/payment.html
+
+    - name: Display configuration completion message
+      ansible.builtin.debug:
+        msg: "Nexvion environment configuration completed successfully."
