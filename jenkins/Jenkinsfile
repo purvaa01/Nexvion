@@ -115,7 +115,7 @@ pipeline {
         stage('Health Check') {
             steps {
                 sh '''
-                    curl --fail --max-time 10 http://localhost:8081
+                     curl --fail --max-time 10 http://localhost:8081
                 '''
             }
         }
