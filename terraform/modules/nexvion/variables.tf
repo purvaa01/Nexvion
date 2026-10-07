@@ -1,17 +1,14 @@
 variable "application_name" {
   description = "Application name"
   type        = string
-  default     = "Nexvion"
 }
 
 variable "environment" {
   description = "Deployment environment"
   type        = string
-  default     = "dev"
 }
 
 variable "application_port" {
   description = "Application port"
   type        = number
-  default     = 80
 }

@@ -1,9 +1,14 @@
-output "container_id" {
-  description = "ID of the Nexvion Docker container"
-  value       = docker_container.nexvion.id
+output "application_name" {
+  description = "Nexvion application name"
+  value       = module.nexvion.application_name
 }
 
-output "application_url" {
-  description = "URL of the Nexvion application"
-  value       = "http://localhost:${var.host_port}"
+output "environment" {
+  description = "Deployment environment"
+  value       = module.nexvion.environment
+}
+
+output "configuration_file" {
+  description = "Generated Terraform configuration file"
+  value       = module.nexvion.configuration_file
 }
