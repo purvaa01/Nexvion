@@ -8,12 +8,16 @@ services:
       - ES_JAVA_OPTS=-Xms256m -Xmx256m
     ports:
       - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
 
   logstash:
     image: docker.elastic.co/logstash/logstash:8.15.0
     container_name: nexvion-logstash
     depends_on:
       - elasticsearch
+    environment:
+      - LS_JAVA_OPTS=-Xms256m -Xmx256m
     ports:
       - "5044:5044"
     volumes:
@@ -26,5 +30,9 @@ services:
       - elasticsearch
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - NODE_OPTIONS=--max-old-space-size=512
     ports:
       - "5601:5601"
+
+volumes:
+  elasticsearch-data:
