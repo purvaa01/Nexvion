@@ -2,7 +2,7 @@
   "title": "Nexvion Kubernetes Health",
   "panels": [
     {
-      "title": "Nexvion Pods",
+      "title": "Nexvion Pod Count",
       "type": "stat",
       "targets": [
         {
@@ -18,6 +18,36 @@
         {
           "expr": "kube_deployment_status_replicas_available{namespace=\"nexvion\"}",
           "legendFormat": "Available Replicas"
+        }
+      ]
+    },
+    {
+      "title": "Nexvion Pod Status",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "sum(kube_pod_status_ready{namespace=\"nexvion\",condition=\"true\"})",
+          "legendFormat": "Ready Pods"
+        }
+      ]
+    },
+    {
+      "title": "Node Status",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "sum(kube_node_status_condition{condition=\"Ready\",status=\"true\"})",
+          "legendFormat": "Ready Nodes"
+        }
+      ]
+    },
+    {
+      "title": "Application Availability",
+      "type": "stat",
+      "targets": [
+        {
+          "expr": "up{job=~\"nexvion.*\"}",
+          "legendFormat": "Application"
         }
       ]
     },
